@@ -1,4 +1,4 @@
-pip==23.2.0
+pip==22.3.1
 absl-py==2.1.0
 astunparse==1.6.3
 blinker==1.9.0
