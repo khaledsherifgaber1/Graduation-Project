@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghosn Crop Recommendation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/crop-styles.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="../templates/index.html">Ghosn</a>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <!-- Background Image Overlay -->
+        <section class="background-overlay"></section>
+        
+        <!-- Informational Section -->
+        <section id="info" class="info-section">
+            <div class="info-container">
+                <h2>About the Crop Recommendation System</h2>
+                <p>
+                    Our Crop Recommendation System is designed to help farmers make informed decisions about what to grow based on environmental and soil data. This tool provides recommendations for the most suitable crops for different climates and soil conditions
+                </p>
+                <p>
+                    By entering essential information about soil health, temperature, humidity, and rainfall, the system recommends the best crops for your farm, optimizing yields and sustainability.
+                </p>
+            </div>
+        </section>
+
+        <!-- Form Section -->
+        <section id="form" class="form-section">
+            <h1>Enter Your Farm's Information</h1>
+            <form method="POST" action="/predict_crop">
+                <table>
+                    <tr>
+                        <td><label for="nitrogen">Nitrogen:</label></td>
+                        <td><input type="text" name="nitrogen" id="nitrogen" required placeholder="Enter nitrogen level"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="phosphorus">Phosphorus:</label></td>
+                        <td><input type="text" name="phosphorus" id="phosphorus" required placeholder="Enter phosphorus level"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="potassium">Potassium:</label></td>
+                        <td><input type="text" name="potassium" id="potassium" required placeholder="Enter potassium level"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="temperature">Temperature:</label></td>
+                        <td><input type="text" name="temperature" id="temperature" required placeholder="Enter temperature (°C)"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="humidity">Humidity:</label></td>
+                        <td><input type="text" name="humidity" id="humidity" required placeholder="Enter humidity level"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="ph_value">pH Value:</label></td>
+                        <td><input type="text" name="ph_value" id="ph_value" required placeholder="Enter soil pH"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="rainfall">Rainfall:</label></td>
+                        <td><input type="text" name="rainfall" id="rainfall" required placeholder="Enter rainfall (mm)"></td>
+                    </tr>
+                </table>
+
+                <button type="submit">Submit</button>
+            </form>
+
+            {% if recommended_crop %}
+                <h2 class="recommended-crop">Recommended Crop: {{ recommended_crop }}</h2>
+            {% endif %}
+
+            {% if error %}
+                <h2 class="error">Error: {{ error }}</h2>
+            {% endif %}
+        </section>
+ <!-- Supported Plants Section -->
+        <section id="plants" class="supported-plants">
+            <h2>Supported Plants</h2>
+            <div class="plants-grid">
+                <!-- Example plant cards -->
+                <div class="plant-card">
+                    <img src="../static/images/bell-pepper.png" alt="Rice">
+                    <p class="plant-name">Bell pepper</p>
+                </div>
+                <div class="plant-card">
+                    <img src="../static/images/cherries.png" alt="Tomato">
+                    <p class="plant-name">Cherry</p>
+                </div>
+                <div class="plant-card">
+                    <img src="../static/images/orange.png" alt="Potato">
+                    <p class="plant-name">Citrus</p>
+                </div>
+                <div class="plant-card">
+                    <img src="../static/images/apple.png" alt="Potato">
+                    <p class="plant-name">Apple</p>
+                </div>
+                <div class="plant-card">
+                    <img src="../static/images/corn.png" alt="Potato">
+                    <p class="plant-name">Corn</p>
+                </div>
+                <div class="plant-card">
+                    <img src="../static/images/grape.png" alt="Potato">
+                    <p class="plant-name">Grape</p>
+                </div>
+                <div class="plant-card">
+                    <img src="../static/images/peach.png" alt="Potato">
+                    <p class="plant-name">Peach</p>
+                </div>
+                <div class="plant-card">
+                    <img src="../static/images/tomato.png" alt="Potato">
+                    <p class="plant-name">Tomato</p>
+                </div>
+                <div class="plant-card">
+                    <img src="../static/images/strawberry.png" alt="Potato">
+                    <p class="plant-name">Strawberry</p>
+                </div>
+                <div class="plant-card">
+                    <img src="../static/images/potato.png" alt="Potato">
+                    <p class="plant-name">Potato</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+ <!-- Footer -->
+ <footer class="footer">
+    <p>Have questions? <a href="mailto:gaberkhaled780@gmail.com">Contact Us</a></p>        
+    <div class="footer-content">
+        <p>&copy; 2024 Sigmoid inc . All Rights Reserved.</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/" target="_blank" class="social-icon">
+                <img src="../static/images/facebook.svg" alt="Facebook">
+            </a>
+            <a href="https://www.twitter.com/" target="_blank" class="social-icon">
+                <img src="../static/images/twitter-alt.svg" alt="Twitter">
+            </a>
+            <a href="https://www.instagram.com/" target="_blank" class="social-icon">
+                <img src="../static/images/instagram.svg" alt="Instagram">
+            </a>
+            <a href="https://www.linkedin.com/" target="_blank" class="social-icon">
+                <img src="../static/images/linkedin.svg" alt="LinkedIn">
+            </a>
+        </div>
+    </div>   
+ </footer>
+
+</body>
+</html>

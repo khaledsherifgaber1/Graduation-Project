@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Detection</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
+    <style>
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background-color: #1b5e20;
+        }
+        .navbar .logo a {
+            font-size: 1.9em;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+        .nav-links li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #e8f5e9;
+            color: #333;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 10px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 40px;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Header */
+        h1 {
+            font-size: 40px;
+            color: #388e3c;
+            margin-bottom: 30px;
+        }
+
+        /* About Section */
+        .about-section, .supported-plants, .upload-section {
+            margin-bottom: 100px;
+        }
+        .about-section h2, .supported-plants h2, .upload-section h2 {
+            font-size: 26px;
+            color: #4caf50;
+            margin-bottom: 20px;
+        }
+
+        /* Drag and Drop Styling */
+        .upload-area {
+            border: 5px dashed #66bb6a;
+            border-radius: 120px;
+            padding: 70px;
+            transition: background-color 0.3s;
+            position: relative;
+            cursor: pointer;
+            margin-bottom: 40px;
+        }
+        .upload-area:hover {
+            background-color: #f0f4c3;
+        }
+        .upload-area.dragover {
+            background-color: #e0f7fa;
+        }
+        .upload-area .icon {
+            font-size: 50px;
+            color: #66bb6a;
+        }
+        .upload-area .text {
+            font-size: 18px;
+            color: #666;
+            margin-top: 10px;
+        }
+        .upload-area input[type="file"] {
+            display: none;
+        }
+
+        /* Button */
+        .submit-button {
+            padding: 12px 25px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #43a047;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .submit-button:hover {
+            background-color: #666;
+        }
+
+        /* Supported Plants */
+        .plants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+            animation: fadeInUp 1.2s ease-in-out;
+        }
+
+        .plant-card {
+            text-align: center;
+            background-color: #66bb6a;
+            border-radius: 30px;
+            padding: 15px;
+            box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            opacity: 0;
+            animation: cardAppear 0.8s ease forwards;
+        }
+
+        .plant-card img {
+            width: 60px;
+            height: 60px;
+            transition: transform 0.3s ease;
+        }
+
+        .plant-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            background-color: #e6ee9c;
+        }
+
+        .plant-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .plant-name {
+            font-size: 18px;
+            color: #333;
+            margin-top: 10px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .plant-card:hover .plant-name {
+            color: #2e7d32;
+        }
+
+        /* Animations */
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Result Section */
+        .result-section {
+            margin-top: 25px;
+            font-size: 18px;
+            display: none;
+        }
+        .result-section.active {
+            display: block;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        .result-text {
+            font-weight: 500;
+            font-size: 18px;
+            color: #4caf50;
+            padding: 12px;
+            border: 2px solid #4caf50;
+            border-radius: 8px;
+            background-color: #f1f8e9;
+        }
+        .error-message {
+            color: #d32f2f;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 12px;
+            border: 2px solid #d32f2f;
+            border-radius: 8px;
+            background-color: #ffebee;
+        }
+
+        /* Social Links */
+        .social-links {
+            margin-top: 10px;
+        }
+        .social-links a {
+            margin: 0 5px;
+        }
+        .social-links img {
+            width: 15px;
+            height: 15px;
+            transition: transform 0.3s;
+        }
+        .social-links img:hover {
+            transform: scale(1.2);
+        }
+
+        /* Footer */
+        footer {
+            padding: 10px; /* Reduced padding */
+            background: #1b5e20;
+            color: #eee;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .footer a {
+            color: #ff6600;
+            text-decoration: none;
+        }
+
+        .footer .social-links {
+            margin-top: 10px;
+        }
+
+        .footer .social-icon img {
+            width: 30px;
+            height: 30px;
+            margin: 0 10px;
+        }
+
+        .footer .social-icon a {
+            color: #ff6600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="index.html">Ghosn</a>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <h1>Plant Disease Detection</h1>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <h2>About the Project</h2>
+            <p>This tool uses advanced machine learning to detect diseases in plants from leaf images, aiming to help farmers and gardeners keep their plants healthy and productive. Early disease detection can help minimize losses and improve yield quality.</p>
+        </section>
+
+        <!-- Upload Section -->
+        <section id="upload" class="upload-section">
+            <h2>Upload an Image</h2>
+            <form action="/predict_disease" method="post" enctype="multipart/form-data" class="upload-form" id="uploadForm">
+                <div class="upload-area" id="uploadArea">
+                    <p class="text">Drag &amp; Drop your image here or click to browse</p>
+                    <input type="file" name="file" id="fileInput" accept="image/*" required>
+                </div>
+                <button type="submit" class="submit-button">Detect Disease</button>
+            </form>
+            {% if predicted_class %}
+            <h2 class="predicted_class">The Detected Disease is : {{ predicted_class }}</h2>
+        {% endif %}
+    
+        {% if error %}
+            <h2 class="error">Error: {{ error }}</h2>
+        {% endif %}
+    </section>
+ 
+
+        <!-- Supported Plants Section -->
+        <section id="plants" class="supported-plants">
+            <h2>Supported Plants</h2>
+            <div class="plants-grid">
+                <div class="plant-card">
+                    <img src="../static/images/apple.png" alt="Bell Pepper">
+                    <p class="plant-name">Apple</p>
+                </div>
+                <div class="plant-card">
+                    <img src="../static/images/bell-pepper.png" alt="Tomato">
+                    <p class="plant-name">Bell pepper</p>
+                </div>
+                <div class="plant-card">
+                    <img src="../static/images/cherries.png" alt="Potato">
+                    <p class="plant-name">Cherry</p>
+                </div>
+                <div class="plant-card">
+                    <img src="../static/images/orange.png" alt="Potato">
+                    <p class="plant-name">Citrus</p>
+                </div>
+                <div class="plant-card">
+                    <img src="../static/images/corn.png" alt="Potato">
+                    <p class="plant-name">Corn</p>
+                </div>
+                <div class="plant-card">
+                    <img src="../static/images/grape.png" alt="Potato">
+                    <p class="plant-name">Grape</p>
+                </div>
+                <div class="plant-card">
+                    <img src="../static/images/peach.png" alt="Potato">
+                    <p class="plant-name">Peach</p>
+                </div>
+                <div class="plant-card">
+                    <img src="../static/images/potato.png" alt="Potato">
+                    <p class="plant-name">Potato</p>
+                </div>
+                <div class="plant-card">
+                    <img src="../static/images/strawberry.png" alt="Potato">
+                    <p class="plant-name">Strawberry</p>
+                </div>
+                <div class="plant-card">
+                    <img src="../static/images/tomato.png" alt="Potato">
+                    <p class="plant-name">Tomato</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>Have questions? <a href="mailto:gaberkhaled780@gmail.com">Contact Us</a></p>        
+        <div class="footer-content">
+            <p>&copy; 2024 Sigmoid inc . All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/" target="_blank" class="social-icon">
+                    <img src="../static/images/facebook.svg" alt="Facebook">
+                </a>
+                <a href="https://www.twitter.com/" target="_blank" class="social-icon">
+                    <img src="../static/images/twitter-alt.svg" alt="Twitter">
+                </a>
+                <a href="https://www.instagram.com/" target="_blank" class="social-icon">
+                    <img src="../static/images/instagram.svg" alt="Instagram">
+                </a>
+                <a href="https://www.linkedin.com/" target="_blank" class="social-icon">
+                    <img src="../static/images/linkedin.svg" alt="LinkedIn">
+                </a>
+            </div>
+        </div>   
+     </footer>
+
+    <!-- JavaScript for Drag and Drop -->
+    <script>
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+async (params) => {
+            const resultSection = document.getElementById('resultSection');
+            const resultText = document.getElementById('resultText');
+            const errorMessage = document.getElementById('errorMessage');
+}
+
+        uploadArea.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', handleFileUpload);
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            if (e.dataTransfer.files.length > 0) {
+                fileInput.files = e.dataTransfer.files;
+                handleFileUpload();
+            }
+        });
+
+        function handleFileUpload() {
+            resultSection.classList.remove('active');
+            errorMessage.textContent = '';
+        }
+    </script>
+    <script>
+        // Get references to the relevant DOM elements
+        const submitButton = document.getElementById('submit-btn');
+        const uploadInput = document.getElementById('file-input');
+        const resultSection = document.getElementById('result');
+        const resultText = document.getElementById('result-text');
+        const confidenceText = document.getElementById('confidence-text');  // New element for confidence
+        const errorMessage = document.getElementById('error-message');
+        const resultImage = document.getElementById('result-image');
+        const errorMessageSection = document.getElementById('error-message-section');
+
+        // Add event listener for the submit button
+        submitButton.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            const file = uploadInput.files[0];
+            
+            if (!file) {
+                errorMessageSection.classList.add('active');
+                errorMessage.textContent = "Please upload an image!";
+                return;
+            }
+            
+            // Create a FormData object to send the file to the Flask server
+            const formData = new FormData();
+            formData.append('file', file);
+
+            // Clear previous results and error messages
+            resultText.textContent = '';
+            confidenceText.textContent = ''; 
+             resultImage.src = '';  // Clear confidence text
+            resultSection.classList.remove('active');
+            errorMessageSection.classList.remove('active');
+            
+            // Send the file to the Flask backend using Fetch API
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())  // Parse the response as JSON
+            .then(data => {
+                if (data.predicted_class) {
+                    // Display the prediction result
+                    resultText.innerHTML = `Predicted Disease: ${data.predicted_class}`;
+                    confidenceText.innerHTML = `Confidence: ${(data.confidence * 100).toFixed(2)}%`;  // Display confidence as a percentage
+                    resultSection.classList.add('active');  // Show the result section
+
+                    // Optionally, display an image related to the disease (if you have a URL to display)
+                    if (data.image_url) {
+                        resultImage.src = data.image_url;  // Assuming Flask returns an image URL
+                    } else {
+                        resultImage.src = ''; // Clear image if not available
+                    }
+                } else {
+                    // Display error message if there's no result
+                    errorMessage.textContent = "An error occurred during prediction!";
+                    errorMessageSection.classList.add('active');
+                }
+            })
+            .catch(error => {
+                // Catch any network or server errors
+                console.error('Error:', error);
+                errorMessage.textContent = "Network error or server is down.";
+                errorMessageSection.classList.add('active');
+            });
+        });
+    </script>
+
+    
+</body>
+</html>

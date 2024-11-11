@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Prediction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/temp-styles.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="index.html">Ghosn</a>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <!-- Background Image Overlay with Animation -->
+        <section class="background-overlay">
+            <div class="intro-text">
+                <h1>Predict Temperature for Your Farm</h1>
+                <p>Enter temperature values for accurate prediction and receive personalized farming advice!</p>
+            </div>
+        </section>
+
+        <!-- Form Section -->
+        <section id="form" class="form-section">
+            <div class="form-container">
+                <h2>Enter Temperature Values</h2>
+                <form action="/predict_weather" method="POST" class="temp-form">
+                    <label for="temperatures">Enter 10 temperature values (comma-separated):</label>
+                    <input type="text" id="temperatures" name="temperatures" placeholder="e.g., 12.5,15.6,18.3,22.1,25.0,26.5,30.0,28.5,23.0,19.8">
+                    <button type="submit" class="submit-btn">Predict</button>
+                </form>
+            </div>
+
+            {% if predicted_temperature is defined %}
+                <div class="result">
+                    <h3>Prediction Results</h3>
+                    <p><strong>Predicted Temperature:</strong> {{ predicted_temperature }}°C</p>
+                </div>
+            {% endif %}
+
+            {% if error_message is defined %}
+                <div class="error-message">
+                    <p>Error: {{ error_message }}</p>
+                </div>
+            {% endif %}
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <p>Have questions? <a href="mailto:gaberkhaled780@gmail.com">Contact Us</a></p>        
+        <div class="footer-content">
+            <p>&copy; 2024 Sigmoid inc . All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/" target="_blank" class="social-icon">
+                    <img src="../static/images/facebook.svg" alt="Facebook">
+                </a>
+                <a href="https://www.twitter.com/" target="_blank" class="social-icon">
+                    <img src="../static/images/twitter-alt.svg" alt="Twitter">
+                </a>
+                <a href="https://www.instagram.com/" target="_blank" class="social-icon">
+                    <img src="../static/images/instagram.svg" alt="Instagram">
+                </a>
+                <a href="https://www.linkedin.com/" target="_blank" class="social-icon">
+                    <img src="../static/images/linkedin.svg" alt="LinkedIn">
+                </a>
+            </div>
+        </div>   
+     </footer>
+
+</body>
+</html>

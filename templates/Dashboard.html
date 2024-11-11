@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Monitoring Dashboard | Ghosn</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
+    <style>
+        /* Reset and General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f1f8e9;
+            color: #333;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background-color: #1b5e20;
+        }
+        .navbar .logo a {
+            font-size: 1.9em;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Header */
+        h1 {
+            font-size: 40px;
+            color: #388e3c;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Embedded Power BI Report */
+        .dashboard-embed {
+            width: 100%;
+            height: 80vh;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Footer */
+        footer {
+            padding: 10px; /* Reduced padding */
+            background: #1b5e20;
+            color: #eee;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .footer a {
+            color: #ff6600;
+            text-decoration: none;
+        }
+
+        .footer .social-links {
+            margin-top: 10px;
+        }
+
+        .footer .social-icon img {
+            width: 30px;
+            height: 30px;
+            margin: 0 10px;
+        }
+
+        .footer .social-icon a {
+            color: #ff6600;
+        }
+
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+
+    <header class="navbar">
+        <div class="logo">
+            <a href="index.html">Ghosn</a>
+        </div>
+
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <h1>Farm Monitoring Dashboard</h1>
+        
+        <!-- Embedded Power BI Dashboard -->
+        <iframe class="dashboard-embed" title="Grad" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=5f060f36-9924-4f42-b39b-7ed7510500ca&autoAuth=true&ctid=24d37484-a6be-44ef-a161-05f86bb9d406" frameborder="0" allowFullScreen="true"></iframe>
+    </div>
+
+    <footer class="footer">
+        <p>Have questions? <a href="mailto:gaberkhaled780@gmail.com">Contact Us</a></p>        
+        <div class="footer-content">
+            <p>&copy; 2024 Sigmoid inc . All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/" target="_blank" class="social-icon">
+                    <img src="../static/images/facebook.svg" alt="Facebook">
+                </a>
+                <a href="https://www.twitter.com/" target="_blank" class="social-icon">
+                    <img src="../static/images/twitter-alt.svg" alt="Twitter">
+                </a>
+                <a href="https://www.instagram.com/" target="_blank" class="social-icon">
+                    <img src="../static/images/instagram.svg" alt="Instagram">
+                </a>
+                <a href="https://www.linkedin.com/" target="_blank" class="social-icon">
+                    <img src="../static/images/linkedin.svg" alt="LinkedIn">
+                </a>
+            </div>
+        </div>   
+     </footer>
+</body>
+</html>
