@@ -1,0 +1,169 @@
+/* Navbar */
+.navbar {
+    background-color: #333;
+    padding: 10px 0;
+}
+
+.navbar .logo a {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 20px;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    text-align: right;
+}
+
+.nav-links li {
+    display: inline-block;
+    padding: 0 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.hero-video {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.cta-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff6600;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.cta-button:hover {
+    background-color: #e55b00;
+}
+
+/* Features Section */
+.features {
+    background-color: #f4f4f4;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.features-heading {
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.feature-items {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.feature-item {
+    background-color: white;
+    padding: 20px;
+    width: 30%;
+    margin: 15px 0;
+    text-align: center;
+}
+
+.feature-item img {
+    width: 80px;
+    height: 80px;
+}
+
+.feature-item h3 {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+/* Team Section */
+.team {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.team-members {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.team-member {
+    width: 30%;
+    padding: 20px;
+    background-color: #f4f4f4;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.team-info {
+    margin-top: 10px;
+}
+
+.social-links a {
+    margin: 0 10px;
+}
+
+.social-links img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Footer */
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer a {
+    color: #ff6600;
+    text-decoration: none;
+}
+
+.footer .social-links {
+    margin-top: 10px;
+}
+
+.footer .social-icon img {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+}
+
+.footer .social-icon a {
+    color: #ff6600;
+}

@@ -1,0 +1,376 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #f4f8f5;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: #1b5e20;
+}
+
+.navbar .logo a {
+    font-size: 1.9em;
+    font-weight: 800;
+    color: #fff;
+    text-decoration: double;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    text-decoration: underline;
+    color: #ffeb3b; /* Adjust color on hover */
+}
+/* Supported Plants */
+.plants-grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+    animation: fadeInUp 1.2s ease-in-out;
+}
+
+.plant-card {
+    text-align: center;
+    background-color: #66bb6a;
+    border-radius: 30px;
+    padding: 15px;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    opacity: 0;
+    animation: cardAppear 0.8s ease forwards;
+}
+
+.plant-card img {
+    width: 60px;
+    height: 60px;
+    transition: transform 0.3s ease;
+}
+
+.plant-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    background-color: #e6ee9c;
+}
+
+.plant-card:hover img {
+    transform: scale(1.1);
+}
+
+.plant-name {
+    font-size: 15px;
+    color: #333;
+    margin-top: 10px;
+    font-weight: 300;
+    letter-spacing: 0.2px;
+    transition: color 0.3s ease;
+}
+
+.plant-card:hover .plant-name {
+    color: #2e7d32;
+}
+
+
+/* Animations */
+@keyframes cardAppear {
+from {
+    opacity: 0;
+    transform: translateY(20px);
+}
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+}
+
+@keyframes fadeInUp {
+from {
+    opacity: 0;
+    transform: translateY(30px);
+}
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+}
+
+/* Background Overlay */
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4;
+    z-index: -1;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Main Content */
+main {
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 1300px; /* Further increased the max-width */
+    width: 90%; /* Added width for more flexibility */
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Flex container for sections */
+.content-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 50px; /* Further increased gap between sections */
+}
+
+/* Info Section */
+.info-section {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 40px;
+    animation: slideInUp 1s ease-in-out;
+    flex: 1 1 48%; /* Adjusted flex value for better spacing */
+}
+
+.info-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #4CAF50;
+}
+
+.info-section p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.info-section ul {
+    list-style-type: square;
+    padding-left: 20px;
+    font-size: 1.1rem;
+}
+
+.info-section ul li {
+    margin-bottom: 5px;
+}
+
+/* Form Section */
+.form-section {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    animation: slideInUp 1s ease-in-out;
+    flex: 1 1 48%; /* Adjusted flex value for better spacing */
+}
+
+.form-section h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #4CAF50;
+    animation: slideInDown 1s ease-in-out;
+}
+
+form table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+form td {
+    padding: 15px;
+    text-align: left;
+    font-size: 1.1rem;
+}
+
+form label {
+    font-weight: 600;
+}
+
+form input {
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    width: 100%;
+    margin-top: 5px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+form input:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #357a3a;
+    transform: scale(1.05);
+}
+
+/* Result Display */
+h2 {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.recommended-crop {
+    color: #4CAF50;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.error {
+    color: #e74c3c;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Footer */
+footer {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 40px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInDown {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header nav {
+        margin-top: 10px;
+    }
+
+    .form-section {
+        padding: 15px;
+    }
+
+    .content-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info-section,
+    .form-section {
+        flex: 1 1 100%;
+    }
+}
+
+
+/* Footer */
+footer {
+    padding: 10px; /* Reduced padding */
+    background: #1b5e20;
+    color: #eee;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.footer a {
+    color: #ff6600;
+    text-decoration: none;
+}
+
+.footer .social-links {
+    margin-top: 10px;
+}
+
+.footer .social-icon img {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+}
+
+.footer .social-icon a {
+    color: #ff6600;
+}
+
