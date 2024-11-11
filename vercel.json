@@ -1,20 +1,12 @@
 {
   "version": 2,
-  "functions": {
-    "builds": [
-      {
-        "src": "your_project_path",
-        "use": "@vercel/python",
-        "config": {
-          "pythonVersion": "3.10"
-        }
-      }
-    ]
-  },
   "builds": [
     {
       "src": "app.py", 
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "pythonVersion": "3.10"
+      }
     }
   ],
   "routes": [
