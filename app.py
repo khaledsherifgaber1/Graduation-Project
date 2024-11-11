@@ -229,4 +229,6 @@ def generate_agriculture_advice(predicted_temp):
         return "High temperature; ensure adequate irrigation."
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=80)
+
